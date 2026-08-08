@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cu-ffee by Rara | Cheesecuit & Coffee</title>
+    <title>Cu-ffee by Piura | Cheesecuit & Coffee</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
@@ -42,7 +42,7 @@
         /* Navbar & Hero */
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Walau search hilang, ini menjaga layout tetap rapi jika ada elemen lain nantinya */
             align-items: center;
             padding: 15px 5%;
             background-color: rgba(20, 17, 15, 0.95);
@@ -55,11 +55,25 @@
             gap: 15px;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        /* Teks Logo Responsif */
+        .logo { 
+            font-size: clamp(1.2rem, 4vw, 1.5rem); 
+            font-weight: 700; 
+            color: var(--accent); 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
         
-        .search-box { display: flex; align-items: center; background: var(--card-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 8px 15px; width: 300px; max-width: 100%; }
-        .search-box input { background: none; border: none; color: var(--text-main); width: 100%; padding: 5px 10px; font-family: inherit; outline: none; }
-        .search-box input::placeholder { color: var(--text-muted); }
+        /* Gambar Logo Lingkaran */
+        .logo-img {
+            height: 35px; 
+            width: 35px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 2px solid var(--accent); 
+        }
 
         .hero { min-height: 45vh; background: linear-gradient(to right, rgba(20, 17, 15, 0.95), rgba(20, 17, 15, 0.6)), url('https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=1200&q=80') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 15px; color: #fff; }
@@ -158,63 +172,24 @@
         @media (max-width: 768px) {
             .menu-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
             .cart-float-btn { bottom: 20px; right: 20px; padding: 12px 20px; }
+            .logo-img { height: 28px; width: 28px; }
         }
-
-        /* Mengatur teks logo agar responsif mengecil di layar HP */
-        .logo { 
-            font-size: clamp(1.2rem, 4vw, 1.5rem); 
-            font-weight: 700; 
-            color: var(--accent); 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; /* Jarak antara gambar dan teks */
-        }
-        
-        /* Mengatur gambar logo */
-        .logo-img {
-            height: 35px; /* Ukuran default */
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* Tambahan khusus layar HP agar logo tidak terlalu memakan tempat */
-      /* Mengatur gambar logo menjadi lingkaran */
-        .logo-img {
-            height: 35px; 
-            width: 35px; /* Lebar harus sama dengan tinggi agar menjadi lingkaran sempurna */
-            border-radius: 50%; /* Ini adalah kode untuk memotong gambar menjadi lingkaran */
-            object-fit: cover; /* Memastikan gambar memenuhi lingkaran tanpa terlihat gepeng/distorsi */
-            border: 2px solid var(--accent); /* (Opsional) Menambahkan garis pinggir berwarna coklat agar lebih manis */
-        }
-
-        /* Tambahan khusus layar HP agar logo tidak terlalu memakan tempat */
-        @media (max-width: 768px) {
-            .logo-img {
-                height: 28px;
-                width: 28px; /* Sesuaikan juga lebarnya untuk HP */
-            }
-        }
-        
     </style>
 </head>
 <body>
 
-    <!-- Navbar & Hero -->
-    <!-- Navbar & Hero -->
+    <!-- Navbar Bersih Tanpa Pencarian -->
     <nav>
-        <!-- Menggabungkan Gambar dan Teks di dalam satu tag <a> -->
         <a href="#" class="logo">
             <img src="images/logoc&c.png" alt="Logo C&C" class="logo-img">
             Cuit-Coffee
         </a>
-        
-        <!-- Bagian pencarian yang sebelumnya terpotong kita kembalikan -->
-        <div class="search-box">
-            <i data-lucide="search" style="color: var(--text-muted); width: 18px;"></i>
-            <input type="text" id="searchInput" placeholder="Cari menu favoritmu...">
-        </div>
     </nav>
+
+    <section class="hero">
+        <h1>Bite & Brew</h1>
+        <p>Perpaduan sempurna antara lembut dan lumernya cheesecuit dengan seduhan kopi pilihan terbaik kami.</p>
+    </section>
 
     <!-- Main Content -->
     <div class="container">
@@ -225,10 +200,8 @@
             <button class="filter-btn" data-category="kopi">Coffee</button>
         </div>
 
-        <!-- Menu Grid (Contoh Penambahan data-status: "tersedia", "bahan-habis", "coming-soon", "sold-out") -->
         <div class="menu-grid" id="menuGrid">
             
-            <!-- Cheesecuit: Tersedia -->
             <div class="menu-card" data-category="cheesecuit" data-status="tersedia" data-name="original cheesecuit biskuit keju lumer oreo">
                 <img src="images/oreo.jpg" alt="Cheesecuit Oreo" class="menu-img">
                 <div class="menu-info">
@@ -241,7 +214,6 @@
                 </div>
             </div>
 
-            <!-- Cheesecuit: Bahan Habis -->
             <div class="menu-card" data-category="cheesecuit" data-status="tersedia" data-name="tiramisu cheesecuit kopi coklat matcha">
                 <img src="images/Matcha.jpg" alt="Cheesecuit Matcha" class="menu-img">
                 <div class="menu-info">
@@ -254,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- Cheesecuit: Coming Soon -->
             <div class="menu-card" data-category="cheesecuit" data-status="tersedia" data-name="lotus biscoff cheesecuit karamel milo">
                 <img src="images/Milo.jpg" alt="Cheesecuit Milo" class="menu-img">
                 <div class="menu-info">
@@ -267,7 +238,6 @@
                 </div>
             </div>
 
-            <!-- Kopi: Sold Out (Habis Terjual) -->
             <div class="menu-card" data-category="kopi" data-status="tersedia" data-name="kopi susu gula aren aren latte">
                 <img src="images/kopsusaren.avif" alt="Ice Kopi Susu Aren" class="menu-img">
                 <div class="menu-info">
@@ -642,22 +612,18 @@
             window.open(linkWA, '_blank');
         }
 
+        // Filter JavaScript Bersih Tanpa Pencarian
         const filterBtns = document.querySelectorAll('.filter-btn');
         const menuCards = document.querySelectorAll('.menu-card');
-        const searchInput = document.getElementById('searchInput');
 
         function filterMenu() {
-            const searchTerm = searchInput.value.toLowerCase();
             let currentCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
 
             menuCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                const nameKeywords = card.getAttribute('data-name'); 
-                
                 const matchesCategory = (currentCategory === 'all' || category === currentCategory);
-                const matchesSearch = nameKeywords.includes(searchTerm);
 
-                card.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
+                card.style.display = matchesCategory ? 'flex' : 'none';
             });
         }
 
@@ -669,7 +635,6 @@
             });
         });
 
-        searchInput.addEventListener('input', filterMenu);
     </script>
 </body>
 </html>
